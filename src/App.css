@@ -1,4 +1,55 @@
-*{
+*, *::before, *::after{
   box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
+}
+
+body{
+  padding: 0;
   margin: 0;
+  background: linear-gradient(to right, #001e55, #02a2be);
+  color: #ffff;
+}
+
+form{
+  display: flex;
+  justify-content: center;
+}
+
+input{
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.main{
+  display: grid;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.title{
+  text-align: center ;
+}
+
+.todos{
+  display: grid;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.todo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  color: #000;
+}
+
+.todo span{
+  padding-right: 1rem;
 }

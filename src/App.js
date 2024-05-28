@@ -11,6 +11,9 @@ export const Actions = {
 function reducer(todos, action){
   switch(action.type){
     case Actions.ADD_TODO:
+      if(action.payload.name === ""){
+        return todos
+      }
       return [
         addTodo(action.payload.name), ...todos
       ]
@@ -41,18 +44,16 @@ function App() {
   const [todos, dispatch] = useReducer(reducer, [])
   const [name, setName] = useState('')
 
-  console.log(todos)
-
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch({type: Actions.ADD_TODO, payload: {name:  name}})
     setName('')
   }
   return (
-    <div>
-      <h1>Todo APP Using React Reducer State Management</h1>
+    <div className='main'>
+      <h1 className='title'>Todo App Demo Using React Reducer State Management</h1>
       <form onSubmit={handleSubmit}>
-        <input type='text' value={name} onChange={e => setName(e.target.value)} />
+        <input placeholder='Type you task here' type='text' value={name} onChange={e => setName(e.target.value)} />
       </form>
 
       <div className='todos'>
