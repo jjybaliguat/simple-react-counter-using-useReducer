@@ -5,7 +5,7 @@ import Todo from './Todo';
 export const Actions = {
   ADD_TODO: 'add-todo',
   DELETE_TODO: 'delete-todo',
-  UPDATE_TODO: 'update-todo'
+  TOGGLE_TODO: 'toggle-todo'
 }
 
 function reducer(todos, action){
@@ -19,10 +19,10 @@ function reducer(todos, action){
       ]
     case Actions.DELETE_TODO:
       return todos.filter(todo => todo.id !== action.payload.id)
-    case Actions.UPDATE_TODO:
+    case Actions.TOGGLE_TODO:
       return todos.map(todo => {
         if(todo.id === action.payload.id){
-          return {...todo, name: action.payload.name}
+          return {...todo, completed: !todo.completed}
         }
         return todo
       })
@@ -51,15 +51,22 @@ function App() {
   }
   return (
     <div className='main'>
-      <h1 className='title'>Todo App Demo Using React Reducer State Management</h1>
-      <form onSubmit={handleSubmit}>
-        <input placeholder='Type you task here' type='text' value={name} onChange={e => setName(e.target.value)} />
-      </form>
+      <h1 className='title'>Todo App Using React Reducer State Management</h1>
+      <p className='title'>This is a simple demo on how to manage state in react using useReducer Hook.</p>
+      <div className='main-todo-container'>
+        <h1 className='inner-title'>Todo App</h1>
+        <form onSubmit={handleSubmit}>
+          <div className='input-container'>
+            <input placeholder='Type you task here' type='text' value={name} onChange={e => setName(e.target.value)} />
+            <button type='submit' className="plus-icon">+</button>
+          </div>
+        </form>
 
-      <div className='todos'>
-        {todos?.map((todo)=> {
-          return <Todo todo={todo} dispatch={dispatch} />
-        })}
+        <div className='todos'>
+          {todos?.map((todo)=> {
+            return <Todo todo={todo} dispatch={dispatch} />
+          })}
+        </div>
       </div>
     </div>
   );
